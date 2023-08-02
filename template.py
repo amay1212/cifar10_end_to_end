@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 import logging
 
-logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
-project_name = 'cifar10Project'
-#print(f"this is the project {project_name}")
+logging.basicConfig(level=logging.INFO, format="[%(asctime)s]: %(message)s:")
+project_name = "cifar10Project"
+# print(f"this is the project {project_name}")
 lst_files = [
     ".github/workflows/.gitkeep",
     f"src/{project_name}/__init__.py",
@@ -27,20 +27,20 @@ lst_files = [
     "setup.py",
     "research/trials.ipynb",
     "templates/index.html",
-    "test.py"
+    "test.py",
 ]
 
 for file_path in lst_files:
     filePath = Path(file_path)
     filedir, file_name = os.path.split(filePath)
     print(filedir, file_name)
-    
-    if filedir!="":
+
+    if filedir != "":
         os.makedirs(filedir, exist_ok=True)
         logging.info(f"Creating directory : {filedir} for file {file_name}")
 
     if (not os.path.exists(filePath)) or (os.path.getsize(filePath) == 0):
-        with open (filePath, "w") as f:
+        with open(filePath, "w") as f:
             pass
             logging.info(f"Creating empty file : {filePath}")
     else:
