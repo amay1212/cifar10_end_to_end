@@ -1,5 +1,6 @@
 from src.cifar10Project import logger
 from cifar10Project.pipeline.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from cifar10Project.pipeline.stage_02_data_validation import DataValidationTrainingPipeline
 
 if __name__ == '__main__':
     logger.info("This is the first custom log!!")
@@ -8,6 +9,16 @@ if __name__ == '__main__':
         logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
         data_ingestion = DataIngestionTrainingPipeline()
         data_ingestion.main()
+        logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    except Exception as e:
+        logger.exception(e)
+        raise e
+    
+    STAGE_NAME = "Data Validation stage"
+    try:
+        logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<") 
+        data_valid = DataValidationTrainingPipeline()
+        data_valid.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:
         logger.exception(e)
